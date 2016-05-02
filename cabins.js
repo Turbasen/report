@@ -50,6 +50,7 @@ turbasen.grupper.each({}, (group, next) => {
     item.geojson.coordinates = item.geojson.coordinates || [-999, -999];
 
     const cabin = {
+      id: item._id,
       navn: item.navn,
       longitude: item.geojson.coordinates[0],
       latitude: item.geojson.coordinates[1],
@@ -60,6 +61,7 @@ turbasen.grupper.each({}, (group, next) => {
       senger_ubetjent: item.privat.senger.ubetjent,
       senger_selvbetjent: item.privat.senger.selvbetjent,
       senger_betjent: item.privat.senger.betjent,
+      url: `http://www.ut.no/hytte/${item._id}`,
     };
 
     cabins.push(cabin);
