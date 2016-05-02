@@ -30,6 +30,7 @@ const query = {
   fields: 'navn,betjeningsgrad,geojson,privat',
   'tags.0': 'Hytte',
   'privat.hytteeier': 'DNT',
+  'sort': 'navn',
 };
 
 const cabins = [];
