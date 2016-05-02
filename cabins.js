@@ -27,7 +27,7 @@ const CSV = require('comma-separated-values');
 const write = require('fs').writeFileSync;
 
 const query = {
-  fields: 'navn,betjeningsgrad,privat',
+  fields: 'navn,betjeningsgrad,geojson,privat',
   'tags.0': 'Hytte',
   'privat.hytteeier': 'DNT',
 };
@@ -45,8 +45,13 @@ turbasen.grupper.each({}, (group, next) => {
     item.privat = item.privat || {};
     item.privat.senger = item.privat.senger || {};
 
+    item.geojson = item.geojson || {};
+    item.geojson.coordinates = item.geojson.coordinates || [-999, -999];
+
     const cabin = {
       navn: item.navn,
+      longitude: item.geojson.coordinates[0],
+      latitude: item.geojson.coordinates[1],
       betjening: item.betjeningsgrad,
       eier: groups.get(item.privat.juridisk_eier),
       driver: groups.get(item.privat.vedlikeholdes_av),
